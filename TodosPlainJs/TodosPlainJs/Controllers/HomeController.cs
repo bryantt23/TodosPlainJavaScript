@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Web.Mvc;
+using TodosPlainJs.Models;
 
 namespace TodosPlainJs.Controllers
 {
@@ -25,6 +26,39 @@ namespace TodosPlainJs.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetTodos()
+        {
+            List<Todos> todos = new List<Todos>();
+            string connectionStr = ConfigurationManager
+                .ConnectionStrings["connectionStr"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connectionStr))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "spGetTodos";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    Todos todo = new Todos();
+                    todo.Id = (int)rdr["Id"];
+                    todo.Todo = (string)rdr["Todo"];
+                    todos.Add(todo);
+                }
+                rdr.Close();
+                con.Close();
+            }
+
+            Todos[] res = todos.ToArray();
+            return this.Json(todos, JsonRequestBehavior.AllowGet);
         }
     }
 }
