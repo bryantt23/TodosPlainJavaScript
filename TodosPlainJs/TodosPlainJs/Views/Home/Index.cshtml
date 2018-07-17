@@ -16,31 +16,15 @@
     <div id="todosTemp">
 
     </div>
-    <div id="demo">
+
+    @*<div id="demo">
         <button onclick="loadDoc()">Load</button>
-    </div>
+    </div>*@
 
     <table id="mixed">
         <tr>
-            <th></th>
             <th>Order</th>
             <th>To do</th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        <tr>
-            <th>
-                <input type="checkbox"/>
-            </th>
-
-            <th>{{$index+1}}</th>
-            <th>
-                <input ng-model="t.EditableTodo" ng-show="t.EditorEnabled">
-            </th>
-            <th><a href="#" ng-click="deleteTodo(t.Id)">Delete</a></th>
-            <th>
-            </th>
         </tr>
     </table>
 

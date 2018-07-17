@@ -44,8 +44,30 @@ function loadDoc() {
                         tr.appendChild(td);
                     }
 */
-                    tr.appendChild(document.createTextNode(""));
-                    tr.appendChild(txt);
+
+                    //var td = document.createElement("td");
+                    //td.appendChild({});
+                    //tr.appendChild(td);
+                    //var td = document.createElement("td");
+                    //var index = document.createTextNode("");
+                    //td.appendChild(index);
+                    //tr.appendChild(td);
+
+                    var td2 = document.createElement("td");
+                    var index = document.createTextNode(i + 1);
+                    td2.appendChild(index);
+                    tr.appendChild(td2);
+
+                    var td3 = document.createElement("td");
+                    //tr.appendChild(td2);
+                    var txt = document.createTextNode(values[i]["Todo"]);
+                    td3.appendChild(txt);
+                    tr.appendChild(td3);
+
+
+
+                    //tr.appendChild(document.createTextNode(""));
+                    //tr.appendChild(txt);
                     //td.appendChild(txt);
                     //tr.appendChild(td);
                     // append row to table
@@ -62,13 +84,16 @@ function loadDoc() {
 window.onload = function () {
     //yourFunction(param1, param2);
 
+    /*
     var div = document.getElementById("todosTemp");
 
     for (var i = 0; i < todos.length; i++) {
         div.innerHTML += todos[i];
         div.innerHTML += "</br>"
 
-    }
+    }*/
+
+    loadDoc();
 
     //hello();
 };
