@@ -1,15 +1,29 @@
 ﻿
-var todos = ["wake", "eat", "sleep", "code"];
 
-function hello() {
-    alert("hi");
+function addTodo() {
+    var todo = document.getElementById("myTextarea").value;
+
+    //debugger;
+    alert(todo);
+    alert(todo);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/Home/AddTodo', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {//Call a function when the state changes.
+        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            // Request finished. Do processing here.
+        }
+    }
+    xhr.send("todo="+todo);
+    xhttp.send();
 }
 
 
 function loadDoc() {
-    //$.get("/Home/GetTodos", function (data, status) {
-    //    alert("Data: " + data + "\nStatus: " + status);
-    //});
+
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -82,18 +96,7 @@ function loadDoc() {
     }
 
 window.onload = function () {
-    //yourFunction(param1, param2);
-
-    /*
-    var div = document.getElementById("todosTemp");
-
-    for (var i = 0; i < todos.length; i++) {
-        div.innerHTML += todos[i];
-        div.innerHTML += "</br>"
-
-    }*/
 
     loadDoc();
 
-    //hello();
 };
