@@ -4,8 +4,8 @@ function addTodo() {
     var todo = document.getElementById("myTextarea").value;
 
     //debugger;
-    alert(todo);
-    alert(todo);
+    //alert(todo);
+    //alert(todo);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", '/Home/AddTodo', true);
 
@@ -15,6 +15,7 @@ function addTodo() {
     xhr.onreadystatechange = function () {//Call a function when the state changes.
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
             // Request finished. Do processing here.
+            loadDoc();
         }
     }
     xhr.send("todo="+todo);
@@ -28,6 +29,9 @@ function loadDoc() {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var values = JSON.parse(this.responseText);
+
+
+                values.sort((a, b) =>a.Id - b.Id);
                 //myFunction(myArr);
 
                 /*
@@ -38,6 +42,7 @@ function loadDoc() {
 
                  */
                 var mixed = document.getElementById("mixed");
+                mixed.innerHTML = '';
 
                 // IE7 only supports appending rows to tbody
                 var tbody = document.createElement("tbody");
