@@ -31,6 +31,9 @@ function loadDoc() {
                 var values = JSON.parse(this.responseText);
 
 
+                document.getElementById("values").innerHTML =
+                JSON.stringify(values);
+
                 values.sort((a, b) =>a.Id - b.Id);
                 //myFunction(myArr);
 
@@ -44,6 +47,39 @@ function loadDoc() {
                 var mixed = document.getElementById("mixed");
                 mixed.innerHTML = '';
 
+
+
+
+
+
+
+
+
+
+
+
+
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.appendChild(document.createTextNode('Order'));
+                tr.appendChild(td);
+                var td = document.createElement("td");
+                td.appendChild(document.createTextNode('To do'));
+                tr.appendChild(td);
+                var td = document.createElement("td");
+                td.appendChild(document.createTextNode('Id--make this into a hidden field and use this to delete the todo'));
+                tr.appendChild(td);
+
+                tr.style.fontWeight = 'bold';
+
+                mixed.appendChild(tr);
+
+
+
+
+
+
+
                 // IE7 only supports appending rows to tbody
                 var tbody = document.createElement("tbody");
 
@@ -55,22 +91,6 @@ function loadDoc() {
                     // for each inner array cell
                     // create td then text, append
                     var txt = document.createTextNode(values[i]["Todo"]);
-                    /*
-                    for (var j = 0; j < values[i].length; j++) {
-                        var td = document.createElement("td");
-                        var txt = document.createTextNode(values[i][j]);
-                        td.appendChild(txt);
-                        tr.appendChild(td);
-                    }
-*/
-
-                    //var td = document.createElement("td");
-                    //td.appendChild({});
-                    //tr.appendChild(td);
-                    //var td = document.createElement("td");
-                    //var index = document.createTextNode("");
-                    //td.appendChild(index);
-                    //tr.appendChild(td);
 
                     var td2 = document.createElement("td");
                     var index = document.createTextNode(i + 1);
@@ -82,6 +102,12 @@ function loadDoc() {
                     var txt = document.createTextNode(values[i]["Todo"]);
                     td3.appendChild(txt);
                     tr.appendChild(td3);
+
+                    var td4 = document.createElement("td");
+                    //tr.appendChild(td2);
+                    var txt = document.createTextNode(values[i]["Id"]);
+                    td4.appendChild(txt);
+                    tr.appendChild(td4);
 
 
 
